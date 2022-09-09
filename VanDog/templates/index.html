@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Van Dog</title>
+    </head>
+
+    <body style="display: flex; justify-content: center;">
+        {% if show_results or show_input %}
+            <div style="border: 5px solid #04AA6D; height: 600px; width: 600px; display:flex; flex-direction: column; align-items: center; justify-content: center;">
+        {% endif %}
+        
+        {% if not show_results and not show_input %}
+            <div style="border: 5px solid #04AA6D; height: 400px; width: 600px; display:flex; flex-direction: column; align-items: center; justify-content: center;">
+        {% endif %}
+
+            <h1 style="margin: 0;"><em>VanDog</em> - Image Stylizer</h1>
+            <h3 style="margin: 0 0 20px 0;">Zaka MLC - Team Wissam-Carine</h3>
+
+            {% if show_results or not show_input %}
+                {% if not show_results %}
+                    <img src="{{ zaka_logo_filepath }}" style="width: 250px; margin-bottom: 40px; margin-top: 20px"/>
+                {% endif %}
+
+            <form action="/upload" method="post" enctype="multipart/form-data" style="display:flex; flex-direction: column; align-items: center; justify-content: center;">
+                <div>
+                    <span style="width: 500px; display: flex; justify-content: space-between; margin: 0 0;"><strong>Upload pet image:</strong><input type="file" name="pet_image" style='direction: rtl;'/></span>
+                </div>
+
+                <div>
+                    <span style="width: 500px; display: flex; justify-content: space-between; margin: 0 0;"><strong>Upload background image:</strong><input type="file" name="bg_image" style='direction: rtl;'/></span>
+                </div>
+
+                <div>
+                    <input type="submit" value="UPLOAD" style="height: 40px; width: 500px; background-color: #04AA6D; border: none; border-radius: 5px; color: #fff; margin-top: 12px; cursor: pointer"/>
+                </div>
+            </form>
+            {% endif %}
+
+            {% if show_input %}
+                <div style="display:flex; align-items: center; justify-content: center; margin-top: 25px;">
+                    <img style="border: 1px solid #04AA6D; margin-right: 10px; max-width:200px; width:100%; max-height:200px; height:100%;" src="{{ pet_filepath }}" />
+                    <img style="border: 1px solid #04AA6D; margin-right: 10px; max-width:200px; width:100%; max-height:200px; height:100%;" src="{{ bg_filepath }}" />
+                </div>
+                {% if not show_results %}
+                <form action="/stylize" method="post" enctype="multipart/form-data">
+                    <div>
+                        <input type="submit" value="STYLIZE" style="height: 40px; width: 500px; background-color: #04AA6D; border: none; border-radius: 5px; color: #fff; margin-top: 12px; cursor: pointer"/>
+                    </div>
+                </form>
+                {% endif %}
+            {% endif %}
+
+
+            <br />
+        </div>
+
+        <br />
+
+        {% if show_results %}
+            <img src="{{ output_filepath }}" style="border: 5px solid #04AA6D; margin-left: 20px"/>
+        {% endif %}
+        
+    </body>
+</html>
+
+
